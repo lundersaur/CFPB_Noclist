@@ -1,6 +1,7 @@
 require 'uri'
 require 'net/http'
 require 'digest'
+require 'json'
 
 class BadSecClient
   BADSEC_URI = "http://0.0.0.0:8888"
