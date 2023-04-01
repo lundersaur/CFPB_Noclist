@@ -27,6 +27,7 @@ class BadSecClient
     request["X-Request-Checksum"] = checksum(token, '/users')
 
     response = http.request(request).body
+    JSON.generate(response.split)
   end
 end
 
