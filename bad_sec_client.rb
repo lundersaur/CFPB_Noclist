@@ -11,7 +11,7 @@ class BadSecClient
   def authenticate
     uri = URI("#{BADSEC_URI}/auth")
     res = Net::HTTP.get_response(uri)
-    token = res.body
+    token = res['badsec-authentication-token']
   end
 end
 
