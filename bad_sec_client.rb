@@ -16,7 +16,7 @@ class BadSecClient
 
     1.upto(3) do
       response = Net::HTTP.get_response(uri)
-      if response.code == "200"
+      if response&.code == "200"
         auth_token = response['badsec-authentication-token']
         break
       else
@@ -42,7 +42,7 @@ class BadSecClient
 
     1.upto(3) do
       response = http.request(request)
-      if response.code == "200"
+      if response&.code == "200"
         users_list = JSON.generate(response.body.split)
         break
       else
