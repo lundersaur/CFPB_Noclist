@@ -13,14 +13,17 @@ class BadSecClient
   def get_auth_token
     uri = URI("#{BADSEC_URI}/auth")
     auth_token = nil
-
     1.upto(3) do
-      response = Net::HTTP.get_response(uri)
-      if response&.code == "200"
-        auth_token = response['badsec-authentication-token']
-        break
-      else
-        sleep 1
+      begin
+        response = Net::HTTP.get_response(uri)
+        if response&.code == "200"
+          auth_token = response['badsec-authentication-token']
+          break
+        else
+          sleep 1
+        end
+      rescue StandardError => e
+        # STDERR.puts(e) # Uncomment if debugging required
       end
     end
 
@@ -41,12 +44,16 @@ class BadSecClient
     request["X-Request-Checksum"] = checksum(token, '/users')
 
     1.upto(3) do
-      response = http.request(request)
-      if response&.code == "200"
-        users_list = JSON.generate(response.body.split)
-        break
-      else
-        sleep 1
+      begin
+        response = http.request(request)
+        if response&.code == "200"
+          users_list = JSON.generate(response.body.split)
+          break
+        else
+          sleep 1
+        end
+      rescue StandardError => e
+        # STDERR.puts(e) # Uncomment if debugging required
       end
     end
 
