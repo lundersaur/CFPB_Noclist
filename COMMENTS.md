@@ -16,5 +16,7 @@
 
 3. Configure the endpoint the script should use by opening `bad_sec_client.rb` and updating the `BADSEC_URI` constant. Based on the [Ad Hoc example](https://homework.adhoc.team/noclist/#running-the-server), it is set to http://0.0.0.0:8888 by default.
 
-4. In the terminal, run `ruby bad_sec_client.rb` -- it should return an array of strings if not error was encountered. You can check the response code with `echo $?` after the script finishes, with `0` indicating no error was encountered and `1` indicating there was an issue.
+4. Make sure a BADSEC server is available. In development, this can be achieved by running `sudo docker run --rm -p 8888:8888 adhocteam/noclist` (if you have `docker` installed).
+
+5. In the terminal, run `ruby bad_sec_client.rb` -- it should return an array of strings if not error was encountered. You can check the response code with `echo $?` after the script finishes, with `0` indicating no error was encountered and `1` indicating there was an issue.
 
